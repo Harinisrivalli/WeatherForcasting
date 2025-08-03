@@ -1,0 +1,29 @@
+body{
+    background-image: url("../img/bg.jpg");
+    color: black;
+}
+#head{
+    text-align: center;
+}
+#section{
+    display: grid;
+    grid-template-columns: 2.25fr 0.75fr;
+
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#art1{
+    display: grid;
+    grid-template-rows: 5fr 3fr 5fr;
+}
+
+#today{
+    
+}
+#todaycont{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
