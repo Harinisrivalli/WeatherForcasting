@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("../img/monsoon.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  color: black;
+}
+
+#head{
+    text-align: center;
+}
+#section{
+    display: grid;
+    grid-template-columns: 2.25fr 0.75fr;
+
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#art1{
+    display: grid;
+    grid-template-rows: 3fr 0.5fr 1fr;
+}
+
+#today{
+    background-color: rgba(174, 169, 169, 0.564);
+    border-radius: 50px;
+    padding: 50px;
+    width: 200px;
+}
+#todaycont{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#art2{
+    padding-top: 30px;
+    background-color:  rgba(174, 169, 169, 0.564);
+}
+#weekbtn{
+    border-radius: 5px; 
+    background-color: rgba(174, 169, 169, 0.564);
+    height: 25px;
+    border: 0px;
+    cursor: pointer;
+}
+#data{
+    height: 100px;
+    width: 100px;
+}
+#trow{
+    padding-left: 50px;
+    background-color: rgba(174, 169, 169, 0.564);
+}

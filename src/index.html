@@ -13,8 +13,8 @@
     <section id="section">
         <article id="art1">
             <div id="todaycont">
-                <div>
-                    <img src="../img/side.jpg" alt="climate" height="300px" width="300px">
+                <div style="padding-left: 100px;">
+                    <img src="../img/side.jpg" alt="climate" height="250px" width="250px" style="border-radius: 130px;">
                 </div>
                 <div id="today">
                     <h3>Todays Forecast</h3>
@@ -26,18 +26,53 @@
                     <label id="status">cloudy</label>
                 </div>
             </div><br/>
-            <div style="background-color: red;">
-                <button>Weekly Forecast</button>
+            <div style="text-align: end; padding-right: 100px;">
+                <span><img src="../img/arrow.png" height="20px" width="20px"></span>
+                <span><button id="weekbtn">5days Forecast</button></span>
             </div><br/>
-            <div style="background-color: blue;">
+            <div id="weeklyforecast">
+                <table id="tbldata" border="1">
+                    <tr id="trow">
+                        <td id="data">
+                            <span>Temperature: </span>
+                            <label id="tmp">35<sup>o</sup>celcius</label><br/>
+                            <span>Status: </span>
+                            <label id="status">cloudy</label>
+                        </td>
+                        <td id="data">
+                            <span>Temperature: </span>
+                            <label id="tmp">35<sup>o</sup>celcius</label><br/>
+                            <span>Status: </span>
+                            <label id="status">cloudy</label>
+                        </td>
+                        <td id="data">
+                            <span>Temperature: </span>
+                            <label id="tmp">35<sup>o</sup>celcius</label><br/>
+                            <span>Status: </span>
+                            <label id="status">cloudy</label>
+                        </td>
+                        <td id="data">
+                            <span>Temperature: </span>
+                            <label id="tmp">35<sup>o</sup>celcius</label><br/>
+                            <span>Status: </span>
+                            <label id="status">cloudy</label>
+                        </td>
+                        <td id="data">
+                            <span>Temperature: </span>
+                            <label id="tmp">35<sup>o</sup>celcius</label><br/>
+                            <span>Status: </span>
+                            <label id="status">cloudy</label>
+                        </td>
+                    </tr>
+                </table>
             </div><br/>
         </article>
-        <article>
+        <article id="art2">
             <div style="text-align: center;">
                 <select>
-                    <option><input type="text" placeholder="Enter you city"></option>
-                </select><br/>
-                or<br/>
+                    <option><input type="text" placeholder="Enter your city"></option>
+                </select><br/><br/>
+                or<br/><br/>
                 <button>Select your Location</button>
             </div>
         </article>
