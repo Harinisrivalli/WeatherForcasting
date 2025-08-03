@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecasting</title>
+    <link href="../css/index.css" rel="stylesheet">
+</head>
+<body>
+    <header id="head">
+        <h2 id="title">Weather Forecast</h2>
+    </header><br/>
+    <section id="section">
+        <article id="art1">
+            <div id="todaycont">
+                <div>
+                    <img src="../img/side.jpg" alt="climate" height="300px" width="300px">
+                </div>
+                <div id="today">
+                    <h3>Todays Forecast</h3>
+                    <span>Time: </span>
+                    <label id="time"><time>10:00</time></label><br/>
+                    <span>Temperature: </span>
+                    <label id="tmp">35<sup>o</sup>celcius</label><br/>
+                    <span>Status: </span>
+                    <label id="status">cloudy</label>
+                </div>
+            </div><br/>
+            <div style="background-color: red;">
+                <button>Weekly Forecast</button>
+            </div><br/>
+            <div style="background-color: blue;">
+            </div><br/>
+        </article>
+        <article>
+            <div style="text-align: center;">
+                <select>
+                    <option><input type="text" placeholder="Enter you city"></option>
+                </select><br/>
+                or<br/>
+                <button>Select your Location</button>
+            </div>
+        </article>
+    </section>
+</body>
+</html>
