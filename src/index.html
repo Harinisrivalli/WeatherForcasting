@@ -38,13 +38,13 @@
                 </div>
             </div><br/>
             <div style="text-align: end; padding-right: 100px;">
-                <span><img src="../img/arrow.png" height="20px" width="20px"></span>
+                <span><img src="../img/arrow.png" height="40px" width="30px"></span>
                 <span><button id="weekbtn" onclick="disptable()">5days Forecast</button></span>
             </div><br/>
             <div id="weeklyforecast" style="display: none;">
                 <table id="tbldata" border="1">
                     <tr id="trow">
-                        <td id="data1">
+                        <td id="data1" class="tdata">
                             <label id="date1" class="date"></label><br/>
                             <span>Temperature: </span>
                             <label id="tmp1"></label><br/>
@@ -53,7 +53,7 @@
                             <span>Description: </span>
                             <label id="desc1"></label>
                         </td>
-                        <td id="data2">
+                        <td id="data2" class="tdata">
                             <label id="date2" class="date"></label><br/>
                             <span>Temperature: </span>
                             <label id="tmp2"></label><br/>
@@ -62,7 +62,7 @@
                             <span>Description: </span>
                             <label id="desc2"></label>
                         </td>
-                        <td id="data3">
+                        <td id="data3" class="tdata">
                             <label id="date3" class="date"></label><br/>
                             <span>Temperature: </span>
                             <label id="tmp3"></label><br/>
@@ -71,7 +71,7 @@
                             <span>Description: </span>
                             <label id="desc3"></label>
                         </td>
-                        <td id="data4">
+                        <td id="data4" class="tdata">
                             <label id="date4" class="date"></label><br/>
                             <span>Temperature: </span>
                             <label id="tmp4"></label><br/>
@@ -80,7 +80,7 @@
                             <span>Description: </span>
                             <label id="desc4"></label>
                         </td>
-                        <td id="data5">
+                        <td id="data5" class="tdata">
                             <label id="date5" class="date"></label><br/>
                             <span>Temperature: </span>
                             <label id="tmp5"></label><br/>
@@ -98,11 +98,31 @@
                 <select id="city">
                     <option><input type="text" placeholder="Enter your city" id="cityinput"></option>
                 </select>
-                <button id="btn-search" onclick="addcity()"><i class="fas fa-search"></i></button><br/><br/>
+                <button id="btn-search" onclick="addcity()"><span></span><img src="../img/search.png" alt="search" height="10px" width="10px"></button><br/><br/>
                 or<br/><br/>
                 <button id="location" onclick="selectloc()">Select your Location</button>
             </div>
         </article>
     </section>
+    <script>
+        function getbackgroundimage(hmd,temp){
+            if(temp > 30 && hmd <60){
+                document.body.style.backgroundImage  = `url("../img/sunny.gif")`;
+            }
+            else if(temp > 30 && hmd >= 60){
+                document.body.style.backgroundImage  = `url("../img/rainy.gif")`;
+            }
+            else if(temp < 30  && temp > 20 && hmd >= 65){
+                document.body.style.backgroundImage  = `url("../img/rainy.gif")`;
+            }
+            else if(temp < 30  && temp > 20 && hmd < 65){
+                document.body.style.backgroundImage  = `url("../img/spring.gif")`;
+                document.getElementById("today").style.backgroundColor =  rgba(174, 169, 169, 0.861);
+            }
+            else if(temp < 20){
+                document.body.style.backgroundImage  = `url("../img/cold.gif")`;
+            }
+        }
+    </script>
 </body>
 </html>
