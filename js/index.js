@@ -33,6 +33,7 @@ function getcity(latitude,longitude){
         document.getElementById("tmp").innerHTML= result["main"]["temp"]+"<sup>o</sup>celcius";
         document.getElementById("desc").innerHTML= result["weather"][0]["description"];
         document.getElementById("area").innerHTML = result["name"];
+        getbackgroundimage(result["main"]["humidity"],result["main"]["temp"]);
         getfivedayforecast(latitude,longitude);
     })
     .catch(error=>alert(error));
@@ -40,17 +41,49 @@ function getcity(latitude,longitude){
 
 function addcity(){
     let city= document.getElementById("city");
-    let cityin = document.getElementById("cityinput");
+    let cityin = document.getElementById("cityinput").value;
     let opt= document.createElement("option");
-    opt.innerHTML=cityin.value();
+    console.log(opt);
+    console.log(cityin);
+    opt.innerHTML=cityin;
     city.appendChild(opt);
+    console.log(city);
+    getweatherdata(cityin);
 }
 
 function disptable(){
     document.getElementById("weeklyforecast").style.display="table";
 }
-function getfivedayforecast(latitude,longitude){
-    let i=0;
+function getweatherdata(city){
+    setdateofweek();
+    var lat,long;
+    var forecast=[];
+    var datearray = [];
+    const promise = fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
+    promise.then(response=>response.json())
+    .then(result=>{
+        console.log(result);
+        lat = result["city"]["coord"]["lat"];
+        long = result["city"]["coord"]["lon"];
+        document.getElementById("area").innerHTML=result["city"]["name"];
+        document.getElementById("lat").innerHTML= result["city"]["coord"]["lat"];
+        document.getElementById("long").innerHTML= result["city"]["coord"]["long"];
+        for(let day of result["list"]){
+            let date=day["dt_txt"].split(" ")[0];
+            if(!forecast[date]){
+                let obj = {};
+                obj["date"] = date;
+                obj["description"]=day["weather"][0]["description"];
+                obj["temperature"] = day["main"]["temp"];
+                obj["humidity"] = day["main"]["humidity"];
+                forecast[date]=obj;
+                datearray.push(date);
+            }
+        }
+        callback(forecast,datearray,lat,long);
+    }).catch(error=>alert(error));
+}
+function setdateofweek(){
     let today = new Date();
     let first = new Date(today);
     first.setDate(today.getDate() + 1);
@@ -71,6 +104,10 @@ function getfivedayforecast(latitude,longitude){
     let five = new Date(today);
     five.setDate(today.getDate()+5);
     document.getElementById("date5").innerHTML=five;
+}
+function getfivedayforecast(latitude,longitude){
+    let i=0;
+    setdateofweek();
     var forecast=[];
     var datearray = [];
     const promise = fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
@@ -93,6 +130,12 @@ function getfivedayforecast(latitude,longitude){
 }
 
 function callback(forecast,datearray){
+    document.getElementById("date").innerHTML=datearray[0];
+    document.getElementById("tmp").innerHTML=forecast[datearray[0]].temperature+"<sup>o</sup>celcius";
+    document.getElementById("humidity").innerHTML=forecast[datearray[0]].humidity;
+    document.getElementById("desc").innerHTML= forecast[datearray[0]].description;
+    
+
     document.getElementById("hmd1").innerHTML=forecast[datearray[1]].humidity;
     document.getElementById("desc1").innerHTML=forecast[datearray[1]].description;
     document.getElementById("tmp1").innerHTML= forecast[datearray[1]].temperature+"<sup>o</sup>celcius";
