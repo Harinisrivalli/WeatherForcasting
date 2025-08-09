@@ -56,3 +56,11 @@ select {
     padding-left: 50px;
     background-color: rgba(174, 169, 169, 0.564);
 }
+
+#btn-search{
+    cursor: pointer;
+}
+
+.date{
+    color: rgb(69, 20, 4);
+}
