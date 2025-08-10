@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecasting</title>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link href="../css/index.css" rel="stylesheet">
     <script src="../js/index.js"></script>
 </head>
@@ -100,7 +102,10 @@
                 </select>
                 <button id="btn-search" onclick="addcity()"><span></span><img src="../img/search.png" alt="search" height="10px" width="10px"></button><br/><br/>
                 or<br/><br/>
-                <button id="location" onclick="selectloc()">Select your Location</button>
+                <button id="location" onclick="selectloc()">Current Location</button><br/><br/>
+                or<br/><br/>
+                <button id="loc" onclick="viewmap()">Choose Location</button><br/><br/>
+                <div id="map"></div>
             </div>
         </article>
     </section>
