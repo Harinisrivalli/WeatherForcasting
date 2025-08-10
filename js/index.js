@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded",function(){
         console.log(opt);
         cities.appendChild(opt);
     }
-    console.log(cities);
+    getdatausinglatlong(13.0843,80.2705);
 });
 
 function selectloc(){
@@ -91,6 +91,7 @@ function getdatausinglatlong(latitude,longitude){
     const promise = fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
     promise.then(response=>response.json())
     .then(result=>{
+        console.log(result);
         processResponse(result);
     }).catch(error=>alert("Could not get your location!!!"+error));
 }
@@ -109,6 +110,7 @@ function processResponse(result){
             obj["description"]=day["weather"][0]["description"];
             obj["temperature"] = day["main"]["temp"];
             obj["humidity"] = day["main"]["humidity"];
+            obj["windspeed"]=day["wind"]["speed"];
             forecast[date]=obj;
             datearray.push(date);
         }
@@ -120,30 +122,36 @@ function callback(forecast,datearray){
     getbackgroundimage(forecast[datearray[0]].humidity,forecast[datearray[0]].temperature);
     document.getElementById("date").innerHTML=datearray[0];
     document.getElementById("tmp").innerHTML=forecast[datearray[0]].temperature+"<sup>o</sup>celcius";
-    document.getElementById("humidity").innerHTML=forecast[datearray[0]].humidity;
+    document.getElementById("humidity").innerHTML=forecast[datearray[0]].humidity+"%";
     document.getElementById("desc").innerHTML= forecast[datearray[0]].description;
-    
+    document.getElementById("windspeed").innerHTML= forecast[datearray[0]].windspeed;
 
-    document.getElementById("hmd1").innerHTML=forecast[datearray[1]].humidity;
+    document.getElementById("hmd1").innerHTML=forecast[datearray[1]].humidity+"%";
     document.getElementById("desc1").innerHTML=forecast[datearray[1]].description;
     document.getElementById("tmp1").innerHTML= forecast[datearray[1]].temperature+"<sup>o</sup>celcius";
+    document.getElementById("desc1").innerHTML=forecast[datearray[1]].description;
+    document.getElementById("wspd1").innerHTML= forecast[datearray[1]].windspeed;
 
-    document.getElementById("hmd2").innerHTML=forecast[datearray[2]].humidity;
+    document.getElementById("hmd2").innerHTML=forecast[datearray[2]].humidity+"%";
     document.getElementById("desc2").innerHTML=forecast[datearray[2]].description;
     document.getElementById("tmp2").innerHTML= forecast[datearray[2]].temperature+"<sup>o</sup>celcius";
+    document.getElementById("wspd2").innerHTML= forecast[datearray[2]].windspeed;
 
-    document.getElementById("hmd3").innerHTML=forecast[datearray[3]].humidity;
+    document.getElementById("hmd3").innerHTML=forecast[datearray[3]].humidity+"%";
     document.getElementById("desc3").innerHTML=forecast[datearray[3]].description;
     document.getElementById("tmp3").innerHTML= forecast[datearray[3]].temperature+"<sup>o</sup>celcius";
+    document.getElementById("wspd3").innerHTML= forecast[datearray[3]].windspeed;
 
-    document.getElementById("hmd4").innerHTML=forecast[datearray[4]].humidity;
+    document.getElementById("hmd4").innerHTML=forecast[datearray[4]].humidity+"%";
     document.getElementById("desc4").innerHTML=forecast[datearray[4]].description;
     document.getElementById("tmp4").innerHTML= forecast[datearray[4]].temperature+"<sup>o</sup>celcius";
+    document.getElementById("wspd4").innerHTML= forecast[datearray[4]].windspeed;
 
-    document.getElementById("hmd5").innerHTML=forecast[datearray[5]].humidity;
+
+    document.getElementById("hmd5").innerHTML=forecast[datearray[5]].humidity+"%";
     document.getElementById("desc5").innerHTML=forecast[datearray[5]].description;
     document.getElementById("tmp5").innerHTML= forecast[datearray[5]].temperature+"<sup>o</sup>celcius";
-
+    document.getElementById("wspd5").innerHTML= forecast[datearray[5]].windspeed;
 }
 
 function viewmap(){

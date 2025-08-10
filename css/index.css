@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("../img/spring.gif");
+  background-image: url("../img/cold.gif");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 150vh;
+  height: 180vh;
   color: black;
 }
 
