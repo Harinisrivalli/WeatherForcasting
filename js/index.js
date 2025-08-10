@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded",function(){
     let cities= document.getElementById("city");
     const city=localStorage.getItem("city");
-    for(let i=1;i<=5;i++){
+    const cityarr=JSON.parse(city);
+    for(let i=0;i<cityarr;i++){
         let opt= document.createElement("option");
-        opt.innerHTML=city[i.toString()];
+        opt.innerHTML=cityarr[i];
+        console.log(opt);
         cities.appendChild(opt);
     }
     console.log(cities);
@@ -16,6 +18,7 @@ function selectloc(){
         alert("Location unavailable");
     }
 }
+
 function showPosition(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -23,35 +26,42 @@ function showPosition(position) {
 }
 
 function handleError(error) {
-    alert("Error"+error);
+    alert("Something Wrong with your Location access"+error);
 }
+
 var i=1;
-var obj={};
-function addcity(){
+var obj=[];
+function addcity(cityin){
     let city= document.getElementById("city");
-    let cityin = document.getElementById("cityinput").value;
     let opt= document.createElement("option");
-    obj[i]=cityin;
-    console.log(opt);
-    console.log(cityin);
-    opt.innerHTML=cityin;
-    city.appendChild(opt);
-    getweatherdata(cityin);
-    i++;
-    localStorage.setItem("city",JSON.stringify(obj));
+    if(obj.indexOf(cityin) == -1){
+        obj.push(cityin);
+        opt.innerHTML=cityin;
+        city.appendChild(opt);
+        i++;
+        localStorage.setItem("city",JSON.stringify(obj));
+    }
 }
 
 function disptable(){
     document.getElementById("weeklyforecast").style.display="table";
 }
-function getweatherdata(city){
+
+function getweatherdata(){
+    let cityin = document.getElementById("cityinput").value;
+    if(cityin==""){
+        alert("Location cannot be empty");
+        return;
+    }
     setdateofweek();
-    const promise = fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
+    const promise = fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityin}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
     promise.then(response=>response.json())
     .then(result=>{
         processResponse(result);
-    }).catch(error=>alert(error));
+        addcity(cityin);
+    }).catch(error=>alert("Invalid Location!!!"+error));
 }
+
 function setdateofweek(){
     let today = new Date();
     let first = new Date(today);
@@ -82,13 +92,12 @@ function getdatausinglatlong(latitude,longitude){
     promise.then(response=>response.json())
     .then(result=>{
         processResponse(result);
-    }).catch(error=>alert(error));
+    }).catch(error=>alert("Could not get your location!!!"+error));
 }
 
 function processResponse(result){
     var forecast=[];
     var datearray = [];
-    console.log(result);
     document.getElementById("area").innerHTML=result["city"]["name"];
     document.getElementById("lat").innerHTML= result["city"]["coord"]["lat"];
     document.getElementById("long").innerHTML= result["city"]["coord"]["lon"];
@@ -136,6 +145,7 @@ function callback(forecast,datearray){
     document.getElementById("tmp5").innerHTML= forecast[datearray[5]].temperature+"<sup>o</sup>celcius";
 
 }
+
 function viewmap(){
     // 1. Initialize map
     const map = L.map('map').setView([20.5937, 78.9629], 5); // India center

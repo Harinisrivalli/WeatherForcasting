@@ -13,6 +13,7 @@
     <header id="head">
         <h2 id="title">Weather Forecast</h2>
     </header><br/>
+    <div id="error"></div><br/>
     <section id="section" class="sect">
         <article id="art1">
             <div id="todaycont">
@@ -100,7 +101,7 @@
                 <select id="city">
                     <option><input type="text" placeholder="Enter your city" id="cityinput"></option>
                 </select>
-                <button id="btn-search" onclick="addcity()"><span></span><img src="../img/search.png" alt="search" height="10px" width="10px"></button><br/><br/>
+                <button id="btn-search" onclick="getweatherdata()"><span></span><img src="../img/search.png" alt="search" height="10px" width="10px"></button><br/><br/>
                 or<br/><br/>
                 <button id="location" onclick="selectloc()">Current Location</button><br/><br/>
                 or<br/><br/>
@@ -126,6 +127,12 @@
             }
             else if(temp < 20){
                 document.body.style.backgroundImage  = `url("../img/cold.gif")`;
+            }
+            if(temp>47){
+                document.getElementById("error").innerHTML = "The Temperature is too hot!!! Drink water Sweet heart";
+            }
+            if(temp<10){
+                document.getElementById("error").innerHTML = "The Temperature is too Cool !!!";
             }
         }
     </script>
