@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded",function(){
+    let cities= document.getElementById("city");
+    const city=localStorage.getItem("city");
+    for(let i=1;i<=5;i++){
+        let opt= document.createElement("option");
+        opt.innerHTML=city[i.toString()];
+        cities.appendChild(opt);
+    }
+    console.log(cities);
+});
+
 function selectloc(){
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, handleError);
@@ -14,17 +25,20 @@ function showPosition(position) {
 function handleError(error) {
     alert("Error"+error);
 }
-
+var i=1;
+var obj={};
 function addcity(){
     let city= document.getElementById("city");
     let cityin = document.getElementById("cityinput").value;
     let opt= document.createElement("option");
+    obj[i]=cityin;
     console.log(opt);
     console.log(cityin);
     opt.innerHTML=cityin;
     city.appendChild(opt);
-    console.log(city);
     getweatherdata(cityin);
+    i++;
+    localStorage.setItem("city",JSON.stringify(obj));
 }
 
 function disptable(){
@@ -94,6 +108,7 @@ function processResponse(result){
 }
 
 function callback(forecast,datearray){
+    getbackgroundimage(forecast[datearray[0]].humidity,forecast[datearray[0]].temperature);
     document.getElementById("date").innerHTML=datearray[0];
     document.getElementById("tmp").innerHTML=forecast[datearray[0]].temperature+"<sup>o</sup>celcius";
     document.getElementById("humidity").innerHTML=forecast[datearray[0]].humidity;
@@ -120,4 +135,31 @@ function callback(forecast,datearray){
     document.getElementById("desc5").innerHTML=forecast[datearray[5]].description;
     document.getElementById("tmp5").innerHTML= forecast[datearray[5]].temperature+"<sup>o</sup>celcius";
 
+}
+function viewmap(){
+    // 1. Initialize map
+    const map = L.map('map').setView([20.5937, 78.9629], 5); // India center
+
+    // 2. Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+    }).addTo(map);
+
+    // 3. Marker variable
+    let marker;
+
+    // 4. Click event to get coordinates
+    map.on('click', function(e) {
+        const lat = e.latlng.lat.toFixed(6);
+        const lng = e.latlng.lng.toFixed(6);
+
+        // Remove old marker
+        if (marker) {
+        map.removeLayer(marker);
+        }
+
+        // Add new marker
+        marker = L.marker([lat, lng]).addTo(map);
+        getdatausinglatlong(lat,lng);
+    });
 }
