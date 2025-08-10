@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("../img/monsoon.gif");
+  background-image: url("../img/sunny.gif");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
+  height: 150vh;
   color: black;
 }
 
@@ -28,7 +28,7 @@ select {
 }
 
 #today{
-    background-color: rgba(174, 169, 169, 0.564);
+    background-color: rgba(174, 169, 169, 0.795);
     border-radius: 50px;
     padding: 50px;
     width: 200px;
@@ -39,11 +39,10 @@ select {
 }
 #art2{
     padding-top: 30px;
-    background-color:  rgba(174, 169, 169, 0.564);
 }
 #weekbtn{
     border-radius: 5px; 
-    background-color: rgba(174, 169, 169, 0.564);
+    background-color:rgba(174, 169, 169, 0.795);
     height: 25px;
     border: 0px;
     cursor: pointer;
@@ -54,7 +53,7 @@ select {
 }
 #trow{
     padding-left: 50px;
-    background-color: rgba(174, 169, 169, 0.564);
+    background-color: rgba(174, 169, 169, 0.795);
 }
 
 #btn-search{
@@ -63,4 +62,25 @@ select {
 
 .date{
     color: rgb(69, 20, 4);
+}
+
+.tdata{
+    height: 150px;
+    width: 300px;
+}
+
+@media (width:375px) {/*iphone se*/
+    #section{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (width:768px){
+    #section{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 }
