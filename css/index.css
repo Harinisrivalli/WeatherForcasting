@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("../img/rainy.gif");
+  background-image: url("../img/sunny.gif");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
+  height: 150vh;
   color: black;
 }
 
@@ -67,4 +67,20 @@ select {
 .tdata{
     height: 150px;
     width: 300px;
+}
+
+@media (width:375px) {/*iphone se*/
+    #section{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (width:768px){
+    #section{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 }

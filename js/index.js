@@ -8,35 +8,11 @@ function selectloc(){
 function showPosition(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-    getcity(latitude,longitude);
+    getdatausinglatlong(latitude,longitude);
 }
 
 function handleError(error) {
     alert("Error"+error);
-}
-function getcity(latitude,longitude){
-    const promise = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
-    promise.then(response=>response.json())
-    .then(result=>{
-        let now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-        let seconds = now.getSeconds()
-        let time=hours+":"+minutes+":"+seconds;
-        let day = now.getDate();
-        let month = now.getMonth() + 1; // Months are 0-based
-        let year = now.getFullYear();
-        let date = day+"-"+month+"-"+year;
-        document.getElementById("humidity").innerHTML=result["main"]["humidity"];
-        document.getElementById("time").innerHTML=time;
-        document.getElementById("date").innerHTML=date;
-        document.getElementById("tmp").innerHTML= result["main"]["temp"]+"<sup>o</sup>celcius";
-        document.getElementById("desc").innerHTML= result["weather"][0]["description"];
-        document.getElementById("area").innerHTML = result["name"];
-        getbackgroundimage(result["main"]["humidity"],result["main"]["temp"]);
-        getfivedayforecast(latitude,longitude);
-    })
-    .catch(error=>alert(error));
 }
 
 function addcity(){
@@ -56,31 +32,10 @@ function disptable(){
 }
 function getweatherdata(city){
     setdateofweek();
-    var lat,long;
-    var forecast=[];
-    var datearray = [];
     const promise = fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
     promise.then(response=>response.json())
     .then(result=>{
-        console.log(result);
-        lat = result["city"]["coord"]["lat"];
-        long = result["city"]["coord"]["lon"];
-        document.getElementById("area").innerHTML=result["city"]["name"];
-        document.getElementById("lat").innerHTML= result["city"]["coord"]["lat"];
-        document.getElementById("long").innerHTML= result["city"]["coord"]["long"];
-        for(let day of result["list"]){
-            let date=day["dt_txt"].split(" ")[0];
-            if(!forecast[date]){
-                let obj = {};
-                obj["date"] = date;
-                obj["description"]=day["weather"][0]["description"];
-                obj["temperature"] = day["main"]["temp"];
-                obj["humidity"] = day["main"]["humidity"];
-                forecast[date]=obj;
-                datearray.push(date);
-            }
-        }
-        callback(forecast,datearray,lat,long);
+        processResponse(result);
     }).catch(error=>alert(error));
 }
 function setdateofweek(){
@@ -105,28 +60,37 @@ function setdateofweek(){
     five.setDate(today.getDate()+5);
     document.getElementById("date5").innerHTML=five;
 }
-function getfivedayforecast(latitude,longitude){
+
+function getdatausinglatlong(latitude,longitude){
     let i=0;
     setdateofweek();
-    var forecast=[];
-    var datearray = [];
     const promise = fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=56c2fdffa8f9da09b4f2e0b9f421bc03&units=metric`);
     promise.then(response=>response.json())
     .then(result=>{
-        for(let day of result["list"]){
-            let date=day["dt_txt"].split(" ")[0];
-            if(!forecast[date]){
-                let obj = {};
-                obj["date"] = date;
-                obj["description"]=day["weather"][0]["description"];
-                obj["temperature"] = day["main"]["temp"];
-                obj["humidity"] = day["main"]["humidity"];
-                forecast[date]=obj;
-                datearray.push(date);
-            }
-        }
-        callback(forecast,datearray);
+        processResponse(result);
     }).catch(error=>alert(error));
+}
+
+function processResponse(result){
+    var forecast=[];
+    var datearray = [];
+    console.log(result);
+    document.getElementById("area").innerHTML=result["city"]["name"];
+    document.getElementById("lat").innerHTML= result["city"]["coord"]["lat"];
+    document.getElementById("long").innerHTML= result["city"]["coord"]["lon"];
+    for(let day of result["list"]){
+        let date=day["dt_txt"].split(" ")[0];
+        if(!forecast[date]){
+            let obj = {};
+            obj["date"] = date;
+            obj["description"]=day["weather"][0]["description"];
+            obj["temperature"] = day["main"]["temp"];
+            obj["humidity"] = day["main"]["humidity"];
+            forecast[date]=obj;
+            datearray.push(date);
+        }
+    }
+    callback(forecast,datearray);
 }
 
 function callback(forecast,datearray){
