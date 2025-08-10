@@ -18,25 +18,24 @@
         <article id="art1">
             <div id="todaycont">
                 <div style="padding-left: 100px;">
-                    <img src="../img/side.jpg" alt="climate" height="250px" width="250px" style="border-radius: 130px;">
+                    <img src="../img/weather.png" alt="climate" height="250px" width="250px" style="border-radius: 130px;">
                 </div>
                 <div id="today">
                     <h3>Todays Forecast</h3>
-                    <span>Time: </span>
+                    <span><img src="../img/clock.png" alt="time" height="20px" width="20px"></span>
                     <label id="time"><time>10:00</time></label><br/>
-                    <span>Date: </span>
+                    <span><img src="../img/date.png" alt="date" height="20px" width="20px"></span>
                     <label id="date"><time>09-08-2025</time></label><br/>
-                    <span>Temperature: </span>
+                    <span><img src="../img/temperature.png" alt="temp" height="20px" width="20px"></span>
                     <label id="tmp">35<sup>o</sup>celcius</label><br/>
-                    <span>Humidity:</span>
+                    <span><img src="../img/humidity.png" alt="humidity" height="20px" width="20px"></span>
                     <label id="humidity">90</label><br/>
-                    <span>Description: </span>
+                    <span><img src="../img/desc.png" alt="Description" height="20px" width="20px"></span>
                     <label id="desc">cloudy</label><br/>
-                    <span>Latitude: </span>
-                    <label id="lat">13.0351</label><br/>
-                    <span>Longtitude: </span>
-                    <label id="long">80.012</label><br/>
-                    <span>Area: </span>
+                    <span><img src="../img/latandlong.png" alt="latandlong" height="20px" width="20px"></span>
+                    <span id="lat">13.0351</span><span> latitude and </span><br/>
+                    <span id="long">80.012</span><span> longtitude.</span><br/>
+                    <span><img src="../img/city.jpeg" alt="latandlong" height="20px" width="20px"></span>
                     <label id="area">Chennai</label><br/>
                 </div>
             </div><br/>
@@ -45,51 +44,56 @@
                 <span><button id="weekbtn" onclick="disptable()">5days Forecast</button></span>
             </div><br/>
             <div id="weeklyforecast" style="display: none;">
-                <table id="tbldata" border="1">
-                    <tr id="trow">
+                <table id="tbldata">
+                    <tr id="trow" style="gap: 10px;">
                         <td id="data1" class="tdata">
+                            <span><img src="../img/date.png" alt="date" height="20px" width="20px"></span>
                             <label id="date1" class="date"></label><br/>
-                            <span>Temperature: </span>
+                            <span><img src="../img/temperature.png" alt="temp" height="20px" width="20px"></span>
                             <label id="tmp1"></label><br/>
-                            <span>Humidity: </span>
-                            <label id="hmd1"></label><br/>
-                            <span>Description: </span>
+                            <span><img src="../img/humidity.png" alt="humidity" height="20px" width="20px"></span>
+                            <label id="hmd1"><span>%</span></label><br/>
+                            <span><img src="../img/desc.png" alt="Description" height="20px" width="20px"></span>
                             <label id="desc1"></label>
                         </td>
                         <td id="data2" class="tdata">
+                            <span><img src="../img/date.png" alt="date" height="20px" width="20px"></span>
                             <label id="date2" class="date"></label><br/>
-                            <span>Temperature: </span>
+                            <span><img src="../img/temperature.png" alt="temp" height="20px" width="20px"></span>
                             <label id="tmp2"></label><br/>
-                            <span>Humidity: </span>
+                            <span><img src="../img/humidity.png" alt="humidity" height="20px" width="20px"></span>
                             <label id="hmd2"></label><br/>
-                            <span>Description: </span>
+                            <span><img src="../img/desc.png" alt="Description" height="20px" width="20px"></span>
                             <label id="desc2"></label>
                         </td>
                         <td id="data3" class="tdata">
+                            <span><img src="../img/date.png" alt="date" height="20px" width="20px"></span>
                             <label id="date3" class="date"></label><br/>
-                            <span>Temperature: </span>
+                            <span><img src="../img/temperature.png" alt="temp" height="20px" width="20px"></span>
                             <label id="tmp3"></label><br/>
-                            <span>Humidity: </span>
+                            <span><img src="../img/humidity.png" alt="humidity" height="20px" width="20px"></span>
                             <label id="hmd3"></label><br/>
-                            <span>Description: </span>
+                            <span><img src="../img/desc.png" alt="Description" height="20px" width="20px"></span>
                             <label id="desc3"></label>
                         </td>
                         <td id="data4" class="tdata">
+                            <span><img src="../img/date.png" alt="date" height="20px" width="20px"></span>
                             <label id="date4" class="date"></label><br/>
-                            <span>Temperature: </span>
+                            <span><img src="../img/temperature.png" alt="temp" height="20px" width="20px"></span>
                             <label id="tmp4"></label><br/>
-                            <span>Humidity: </span>
+                            <span><img src="../img/humidity.png" alt="humidity" height="20px" width="20px"></span>
                             <label id="hmd4"></label><br/>
-                            <span>Description: </span>
+                            <span><img src="../img/desc.png" alt="Description" height="20px" width="20px"></span>
                             <label id="desc4"></label>
                         </td>
                         <td id="data5" class="tdata">
+                            <span><img src="../img/date.png" alt="date" height="20px" width="20px"></span>
                             <label id="date5" class="date"></label><br/>
-                            <span>Temperature: </span>
+                            <span><img src="../img/temperature.png" alt="temp" height="20px" width="20px"></span>
                             <label id="tmp5"></label><br/>
-                            <span>Humidity: </span>
+                            <span><img src="../img/humidity.png" alt="humidity" height="20px" width="20px"></span>
                             <label id="hmd5"></label><br/>
-                            <span>Description: </span>
+                            <span><img src="../img/desc.png" alt="Description" height="20px" width="20px"></span>
                             <label id="desc5"></label>
                         </td>
                     </tr>

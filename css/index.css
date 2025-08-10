@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("../img/cold.gif");
+  background-image: url("../img/spring.gif");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -67,6 +67,7 @@ select {
 .tdata{
     height: 150px;
     width: 300px;
+    border-radius: 10px;
 }
 
 @media (width:375px) {/*iphone se*/
@@ -96,4 +97,10 @@ select {
     padding-left: 550px;
     text-align: center;
     color: red;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 20px 0; 
+    padding: 5px;
 }
