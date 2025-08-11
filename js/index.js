@@ -15,7 +15,7 @@ function selectloc(){
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, handleError);
     } else {
-        alert("Location unavailable");
+        document.getElementById("error").innerHTML ="Location unavailable";
     }
 }
 
@@ -26,7 +26,7 @@ function showPosition(position) {
 }
 
 function handleError(error) {
-    alert("Something Wrong with your Location access"+error);
+    document.getElementById("error").innerHTML ="Something Wrong with your Location access";
 }
 
 var i=1;
@@ -50,7 +50,7 @@ function disptable(){
 function getweatherdata(){
     let cityin = document.getElementById("cityinput").value;
     if(cityin==""){
-        alert("Location cannot be empty");
+        document.getElementById("error").innerHTML="Location cannot be empty";
         return;
     }
     setdateofweek();
@@ -59,7 +59,7 @@ function getweatherdata(){
     .then(result=>{
         processResponse(result);
         addcity(cityin);
-    }).catch(error=>alert("Invalid Location!!!"+error));
+    }).catch(error=>document.getElementById("error").innerHTML="Invalid Location!!!");
 }
 
 function setdateofweek(){
@@ -93,12 +93,13 @@ function getdatausinglatlong(latitude,longitude){
     .then(result=>{
         console.log(result);
         processResponse(result);
-    }).catch(error=>alert("Could not get your location!!!"+error));
+    }).catch(error=>document.getElementById("error").innerHTML="Could not get your location!!!");
 }
 
 function processResponse(result){
     var forecast=[];
     var datearray = [];
+    document.getElementById("error").innerHTML="";
     document.getElementById("area").innerHTML=result["city"]["name"];
     document.getElementById("lat").innerHTML= result["city"]["coord"]["lat"];
     document.getElementById("long").innerHTML= result["city"]["coord"]["lon"];
